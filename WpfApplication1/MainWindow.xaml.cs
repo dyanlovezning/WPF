@@ -297,23 +297,30 @@ namespace WpfApplication1
         {
             //SaveXml.savedata(nodeList, "test1.xml");
             //XmlDataDocument doc = new XmlDataDocument();
-            XmlNode xnode;
+           
 
             //FileStream file = new FileStream("test.xml",FileMode.Open,FileAccess.Read);
             //doc.Load(file);
 
+            //加载文件
             XmlDocument doc = new XmlDocument();
             doc.Load("test.xml");
 
+            //Root 标签
+            XmlNode xnode;
             xnode = doc.ChildNodes[1];
-            twLeaf.Items.Clear();
+
             TreeViewItem itm = new TreeViewItem();
             itm.Header = doc.DocumentElement.Name;
 
+            //清空TreeView
+            twLeaf.Items.Clear();
+       
             //twLeaf.Items.Add(itm);
             
-            TreeViewItem itms = new TreeViewItem();
+            //TreeViewItem itms = new TreeViewItem();
             //itms = twLeaf.
+            
             add_nodes(xnode, itm);
             twLeaf.Items.Add(itm);
             //itms = twLeaf.Items
