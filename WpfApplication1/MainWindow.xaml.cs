@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace WpfApplication1
 {
@@ -286,6 +288,63 @@ namespace WpfApplication1
 
         }
 
+        /// <summary>
+        /// 存储不成功
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            //SaveXml.savedata(nodeList, "test1.xml");
+            //XmlDataDocument doc = new XmlDataDocument();
+            XmlNode xnode;
+
+            //FileStream file = new FileStream("test.xml",FileMode.Open,FileAccess.Read);
+            //doc.Load(file);
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load("test.xml");
+
+            xnode = doc.ChildNodes[1];
+            twLeaf.Items.Clear();
+            TreeViewItem itm = new TreeViewItem();
+            itm.Header = doc.DocumentElement.Name;
+
+            //twLeaf.Items.Add(itm);
+            
+            TreeViewItem itms = new TreeViewItem();
+            //itms = twLeaf.
+            add_nodes(xnode, itm);
+            twLeaf.Items.Add(itm);
+            //itms = twLeaf.Items
+        }
+
+        public void add_nodes(XmlNode x_node, TreeViewItem t_node)
+        {
+            XmlNode xnode;       
+            XmlNodeList node_list;
+            int i;
+
+            if (x_node.HasChildNodes)
+            {
+                node_list = x_node.ChildNodes;
+                for (i = 0; i <= node_list.Count-1; i++)
+                {
+                    xnode = x_node.ChildNodes[i];
+
+                    TreeViewItem tnode = new TreeViewItem();
+                    tnode.Header = xnode.Name;
+                    t_node.Items.Add(tnode);
+
+                    //tnode = t_node.Items[i];
+                    add_nodes(xnode, tnode);
+
+                    //TreeViewItem it = new TreeViewItem();
+                    //AddLeaf(it, node.Children[i]);
+                    //twItem.Items.Add(it);
+                }
+            }
+        }
     }
 
 
@@ -306,6 +365,17 @@ namespace WpfApplication1
         {
             get { return children; }
             set { children = value; }
+        }
+    }
+
+    public class SaveXml
+    {
+        public static void savedata(object obj, string filename)
+        {
+            XmlSerializer sr = new XmlSerializer(obj.GetType());
+            TextWriter write = new StreamWriter(filename);
+            sr.Serialize(write, obj);
+            write.Close();
         }
     }
 }

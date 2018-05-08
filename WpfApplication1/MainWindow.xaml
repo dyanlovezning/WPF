@@ -11,7 +11,7 @@
         
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="0.3*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*" />
@@ -29,14 +29,15 @@
         <ListView Margin="5" Grid.Column="1" Grid.Row="0" x:Name="listv" />
 
         <StackPanel Grid.Column="0" Grid.Row="1">
-            <Button Content="GetNode" Click="btnGetNodes_Click"/>
-            <Button Content="Loadxml" Click="Button_Click_2"/>
+            <Button Margin="5 0" Content="GetNode" Click="btnGetNodes_Click"/>
+            <Button Margin="5 0" Content="Loadxml" Click="Button_Click_2"/>
+            <Button Margin="5 0" Content="Savexml1" Click="Button_Click_3" />
         </StackPanel>
         
 
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <Button Content="Clear ListView" Click="Button_Click" />
-            <Button Content="Save XML" Click="Button_Click_1" />
+            <Button Margin="5 0" Content="Clear ListView" Click="Button_Click" />
+            <Button Margin="5 0" Content="Save XML" Click="Button_Click_1" />
         </StackPanel>
         
 
