@@ -1,0 +1,45 @@
+﻿<Window x:Class="WpfApplication1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApplication1"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TreeView Margin="5" Grid.Column="0" Grid.Row="0" x:Name="twLeaf" TreeViewItem.Selected="twLeaf_Selected" >
+            <TreeView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="delete" Click="MenuItem_Click_1"></MenuItem>
+                </ContextMenu>
+            </TreeView.ContextMenu>
+        </TreeView>
+
+        <ListView Margin="5" Grid.Column="1" Grid.Row="0" x:Name="listv" />
+
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <Button Content="GetNode" Click="btnGetNodes_Click"/>
+            <Button Content="Loadxml" Click="Button_Click_2"/>
+        </StackPanel>
+        
+
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <Button Content="Clear ListView" Click="Button_Click" />
+            <Button Content="Save XML" Click="Button_Click_1" />
+        </StackPanel>
+        
+
+
+    </Grid>
+</Window>
